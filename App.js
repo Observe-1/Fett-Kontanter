@@ -15,12 +15,12 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <AppTabs />
     </NavigationContainer>
   );
 }
 
-function MyTabs() {
+function AppTabs() {
   return (
     <Tab.Navigator>
 
