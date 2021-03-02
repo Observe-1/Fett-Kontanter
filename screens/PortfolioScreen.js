@@ -7,6 +7,7 @@ export default function PortfolioScreen() {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Portfolio!</Text>
         <Button raised accent text="Button to nowhere lol" />
+        
       </View>
     );
   }
