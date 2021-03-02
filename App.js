@@ -1,27 +1,13 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar'
-import { Button } from 'react-native-material-ui';
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-      <Button raised text="Button to nowhere lol" />
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-      <Button raised accent text="Button to nowhere lol" />
-    </View>
-  );
-}
+import AccountsScreen from './screens/AccountsScreen';
+import FlowsScreen from './screens/FlowsScreen';
+import OverviewScreen from './screens/OverviewScreen';
+import PortfolioScreen from './screens/PortfolioScreen';
+import SettingsScreen from './screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +16,10 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="auto" />
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Accounts" component={AccountsScreen} />
+        <Tab.Screen name="Flows" component={FlowsScreen} />
+        <Tab.Screen name="Overview" component={OverviewScreen} />
+        <Tab.Screen name="Portfolio" component={PortfolioScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
       </Tab.Navigator>
     </NavigationContainer>
