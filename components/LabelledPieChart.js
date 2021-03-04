@@ -34,6 +34,7 @@ export default function LabelledPieChart(props) {
             innerRadius={10}
             data={props.pieData}
             spacing={0}
+            animate={true}
         >
             <Labels />
         </PieChart>
