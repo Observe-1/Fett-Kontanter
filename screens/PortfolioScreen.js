@@ -4,6 +4,7 @@ import { Button } from "react-native-material-ui";
 import { Text } from "react-native-svg";
 import * as shape from "d3-shape";
 import { Grid, AreaChart, PieChart, LineChart } from "react-native-svg-charts";
+import { Card } from "react-native-paper";
 
 import LabelledPieChart from "../components/LabelledPieChart";
 
@@ -42,11 +43,30 @@ export default function PortfolioScreen() {
         },
     ];
 
+    //TODO Make default theme
+    const theme = {
+        roundness: 30,
+    };
+
     return (
         <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-            <LabelledPieChart pieData={data} />
+            <Card
+                theme={theme}
+                elevation={5}
+                style={{ height: 200, width: 200 }}
+            >
+                <Card.Content
+                    style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <LabelledPieChart pieData={data} />
+                </Card.Content>
+            </Card>
         </View>
     );
 }
