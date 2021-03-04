@@ -6,73 +6,74 @@ import * as shape from "d3-shape";
 import { AreaChart, PieChart, LineChart } from "react-native-svg-charts";
 
 export default function PortfolioScreen() {
-    const data = Array.apply(null, Array(50)).map(Number.prototype.valueOf, 1);
-
-    // Change to whatever your fill function looks like...
-    const getFill = (index) => {
-        if (index > 30) return "purple";
-        if (index > 20) return "blue";
-        if (index > 10) return "green";
-        return "red";
-    };
-
-    const pieData = data.map((value, index) => ({
-        value,
-        svg: {
-            fill: getFill(index),
+    const data = [
+        {
+            key: 1,
+            value: 50,
+            svg: { fill: "#600080" },
+            arc: { outerRadius: "130%", cornerRadius: 10 },
         },
-        key: `pie-${index}`,
-    }));
-
-    const data2 = [
-        50,
-        10,
-        40,
-        95,
-        -4,
-        -24,
-        85,
-        91,
-        -35,
-        55,
-        -53,
-        24,
-        50,
-        -20,
-        -80,
+        {
+            key: 2,
+            value: 50,
+            svg: { fill: "#9900cc" },
+        },
+        {
+            key: 3,
+            value: 40,
+            svg: { fill: "#c61aff" },
+        },
+        {
+            key: 4,
+            value: 95,
+            svg: { fill: "#d966ff" },
+        },
+        {
+            key: 5,
+            value: 35,
+            svg: { fill: "#ecb3ff" },
+        },
     ];
+
+    const Labels = ({ slices, height, width }) => {
+        return slices.map((slice, index) => {
+            const { labelCentroid, pieCentroid, data } = slice;
+            return (
+                <Text
+                    key={index}
+                    x={pieCentroid[0]}
+                    y={pieCentroid[1]}
+                    fill={"white"}
+                    textAnchor={"middle"}
+                    alignmentBaseline={"middle"}
+                    fontSize={24}
+                    stroke={"black"}
+                    strokeWidth={0.2}
+                    style={{
+                        // position: "absolute",
+                        textAlign: "center",
+                    }}
+                >
+                    {pieCentroid[0]}
+                </Text>
+            );
+        });
+    };
 
     return (
         <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-            <Text>Portfolio!</Text>
-            <Button raised accent text="Button to nowhere lol" />
-
             <PieChart
-                style={{ width: 100, height: 100 }}
-                data={pieData}
-                animate={true}
-            />
-            <AreaChart
-                style={{ width: 100, height: 200 }}
-                data={data2}
-                contentInset={{ top: 30, bottom: 30 }}
-                curve={shape.curveNatural}
-                animate={true}
-                svg={{ fill: "rgba(134, 65, 244, 0.8)" }}
-            >
-                <Grid />
-            </AreaChart>
-            <LineChart
                 style={{ width: 200, height: 200 }}
-                animate={true}
-                data={data2}
-                svg={{ stroke: "rgb(134, 65, 244)" }}
-                contentInset={{ top: 20, bottom: 20 }}
+                valueAccessor={({ item }) => item.value}
+                outerRadius={"70%"}
+                innerRadius={10}
+                data={data}
+                spacing={0}
             >
-                <Grid />
-            </LineChart>
+                <Labels />
+            </PieChart>
         </View>
     );
 }
