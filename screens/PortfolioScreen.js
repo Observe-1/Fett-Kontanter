@@ -1,58 +1,52 @@
-import React from "react";
-import { PieChart } from "react-native-svg-charts";
+import * as React from "react";
 import { View } from "react-native";
-import { Circle, G, Line, Text } from "react-native-svg";
+import { Button } from "react-native-material-ui";
+import { Text } from "react-native-svg";
+import * as shape from "d3-shape";
+import { Grid, AreaChart, PieChart, LineChart } from "react-native-svg-charts";
 
-function PieChartWithLabelExample() {
-    const data = [50, 40, 95, -4, -24, 85, 91];
+import LabelledPieChart from "../components/LabelledPieChart";
 
-    const randomColor = () =>
-        ("#" + ((Math.random() * 0xffffff) << 0).toString(16) + "000000").slice(
-            0,
-            7,
-        );
-
-    const pieData = data
-        .filter((value) => value > 0)
-        .map((value, index) => ({
-            value,
-            svg: { fill: randomColor() },
-            key: `pie-${index}`,
-        }));
-
-    const Labels = ({ slices }) => {
-        return slices.map((slice, index) => {
-            const { labelCentroid, pieCentroid, data } = slice;
-            return (
-                <G key={index}>
-                    <Text
-                        key={index}
-                        x={pieCentroid[0]}
-                        y={pieCentroid[1]}
-                        fill={"black"}
-                        textAnchor={"middle"}
-                        alignmentBaseline={"middle"}
-                        stroke={"black"}
-                        strokeWidth={0.2}
-                    >
-                        {data.value}
-                    </Text>
-                </G>
-            );
-        });
-    };
+export default function PortfolioScreen() {
+    const data = [
+        {
+            key: 1,
+            value: 50,
+            pounds: "£50k",
+            svg: { fill: "#FF6500" },
+            arc: { outerRadius: "130%", cornerRadius: 10 },
+        },
+        {
+            key: 2,
+            value: 50,
+            pounds: "£50k",
+            svg: { fill: "#d02860" },
+        },
+        {
+            key: 3,
+            value: 40,
+            pounds: "£40k",
+            svg: { fill: "#d02800" },
+        },
+        {
+            key: 4,
+            value: 95,
+            pounds: "£95k",
+            svg: { fill: "#d00060" },
+        },
+        {
+            key: 5,
+            value: 35,
+            pounds: "£35k",
+            svg: { fill: "#FF0000" },
+        },
+    ];
 
     return (
-        <PieChart
-            style={{ height: 200 }}
-            data={pieData}
-            innerRadius={20}
-            outerRadius={55}
-            labelRadius={80}
+        <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-            <Labels />
-        </PieChart>
+            <LabelledPieChart pieData={data} />
+        </View>
     );
 }
-
-export default PieChartWithLabelExample;
