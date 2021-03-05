@@ -76,7 +76,7 @@ function AppTabs() {
                 component={SettingsScreen}
                 options={{
                     tabBarLabel: "Settings",
-                    tabBarColor: "#1f2ff2",
+                    tabBarColor: "#ff0002",
                     tabBarIcon: ({ color }) => (
                         <Icon name="settings-sharp" color={color} size={24} />
                     ),
