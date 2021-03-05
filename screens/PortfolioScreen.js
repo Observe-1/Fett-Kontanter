@@ -1,10 +1,11 @@
 import * as React from "react";
 import { View } from "react-native";
 import { Button } from "react-native-material-ui";
-import { Text } from "react-native-svg";
+// import { Text } from "react-native-svg";
 import * as shape from "d3-shape";
 import { Grid, AreaChart, PieChart, LineChart } from "react-native-svg-charts";
 import { Card } from "react-native-paper";
+import { Text, FlatList } from "react-native";
 
 import LabelledPieChart from "../components/LabelledPieChart";
 
@@ -71,6 +72,21 @@ export default function PortfolioScreen() {
         },
     ];
 
+    const data3 = [
+        {
+            key: 1,
+            value: 80,
+            pounds: "£80k",
+            svg: { fill: "#d02860" },
+        },
+        {
+            key: 2,
+            value: 50,
+            pounds: "£50k",
+            svg: { fill: "#FF6500" },
+        },
+    ];
+
     //TODO Make default theme
     const theme = {
         roundness: 30,
@@ -86,7 +102,40 @@ export default function PortfolioScreen() {
                 top: "10%",
             }}
         >
-            <Card
+            <FlatList
+                contentContainerStyle={{
+                    marginBottom: 32,
+                    marginTop: 16,
+                    alignItems: "center",
+                }}
+                columnWrapperStyle={{ justifyContent: "space-between" }}
+                numColumns={2}
+                data={data2}
+                keyExtractor={(item, index) => index.toString()}
+                renderItem={({ item }) => {
+                    console.log(item);
+                    return (
+                        <Card
+                            theme={theme}
+                            elevation={5}
+                            style={{ height: "75%", width: "45%" }}
+                        >
+                            <Card.Content
+                                style={{
+                                    flex: 1,
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    top: "-20%",
+                                }}
+                            >
+                                <LabelledPieChart pieData={data} />
+                            </Card.Content>
+                        </Card>
+                    );
+                }}
+            />
+            <Text>Ingredients</Text>
+            {/* <Card
                 theme={theme}
                 elevation={5}
                 style={{ height: 200, width: 200 }}
@@ -115,7 +164,7 @@ export default function PortfolioScreen() {
                 >
                     <LabelledPieChart pieData={data2} />
                 </Card.Content>
-            </Card>
+            </Card> */}
         </View>
     );
 }
