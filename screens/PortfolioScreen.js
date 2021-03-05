@@ -159,8 +159,8 @@ export default function PortfolioScreen() {
                 flex: 1,
                 justifyContent: "space-between",
                 alignItems: "center",
-                maxHeight: 450,
-                top: "10%",
+                maxHeight: "100%",
+                marginTop: "10%",
             }}
         >
             <FlatList
