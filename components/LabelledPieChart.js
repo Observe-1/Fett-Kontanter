@@ -28,7 +28,7 @@ export default function LabelledPieChart(props) {
 
     return (
         <PieChart
-            style={{ width: 200, height: 200 }}
+            style={{ width: 150, height: 150 }}
             valueAccessor={({ item }) => item.value}
             outerRadius={"70%"}
             innerRadius={10}
