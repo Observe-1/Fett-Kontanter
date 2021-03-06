@@ -9,144 +9,155 @@ import { Text, FlatList } from "react-native";
 
 import LabelledPieChart from "../components/LabelledPieChart";
 
-export default function PortfolioScreen() {
-    const data = [
-        {
-            key: 1,
-            value: [
-                {
-                    key: 1,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                    arc: { outerRadius: "130%", cornerRadius: 10 },
-                },
-                {
-                    key: 2,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 3,
-                    value: 40,
-                    pounds: "£40k",
-                    svg: { fill: "#d02800" },
-                },
-                {
-                    key: 4,
-                    value: 95,
-                    pounds: "£95k",
-                    svg: { fill: "#d00060" },
-                },
-                {
-                    key: 5,
-                    value: 35,
-                    pounds: "£35k",
-                    svg: { fill: "#FF0000" },
-                },
-            ],
+export default async function PortfolioScreen() {
+    saveKeyValue(
+        "pieChartTestData",
+        JSON.stringify([
+            {
+                key: 1,
+                value: [
+                    {
+                        key: 1,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                        arc: { outerRadius: "130%", cornerRadius: 10 },
+                    },
+                    {
+                        key: 2,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 3,
+                        value: 40,
+                        pounds: "£40k",
+                        svg: { fill: "#d02800" },
+                    },
+                    {
+                        key: 4,
+                        value: 95,
+                        pounds: "£95k",
+                        svg: { fill: "#d00060" },
+                    },
+                    {
+                        key: 5,
+                        value: 35,
+                        pounds: "£35k",
+                        svg: { fill: "#FF0000" },
+                    },
+                ],
+            },
+            {
+                key: 2,
+                value: [
+                    {
+                        key: 1,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 2,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                    {
+                        key: 3,
+                        value: 100,
+                        pounds: "£100k",
+                        svg: { fill: "#d02800" },
+                    },
+                    {
+                        key: 4,
+                        value: 35,
+                        pounds: "£35k",
+                        svg: { fill: "#FF0000" },
+                    },
+                ],
+            },
+            {
+                key: 3,
+                value: [
+                    {
+                        key: 1,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 2,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                ],
+            },
+            {
+                key: 4,
+                value: [
+                    {
+                        key: 1,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 2,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                    {
+                        key: 3,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 4,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                    {
+                        key: 5,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 6,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                    {
+                        key: 7,
+                        value: 80,
+                        pounds: "£80k",
+                        svg: { fill: "#d02860" },
+                    },
+                    {
+                        key: 8,
+                        value: 50,
+                        pounds: "£50k",
+                        svg: { fill: "#FF6500" },
+                    },
+                ],
+            },
+        ]),
+    );
+
+    let localPieChartTestData = await getKeyValue("pieChartTestData").then(
+        (stringJsonValue) => {
+            return JSON.parse(stringJsonValue);
         },
-        {
-            key: 2,
-            value: [
-                {
-                    key: 1,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 2,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-                {
-                    key: 3,
-                    value: 100,
-                    pounds: "£100k",
-                    svg: { fill: "#d02800" },
-                },
-                {
-                    key: 4,
-                    value: 35,
-                    pounds: "£35k",
-                    svg: { fill: "#FF0000" },
-                },
-            ],
-        },
-        {
-            key: 3,
-            value: [
-                {
-                    key: 1,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 2,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-            ],
-        },
-        {
-            key: 4,
-            value: [
-                {
-                    key: 1,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 2,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-                {
-                    key: 3,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 4,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-                {
-                    key: 5,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 6,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-                {
-                    key: 7,
-                    value: 80,
-                    pounds: "£80k",
-                    svg: { fill: "#d02860" },
-                },
-                {
-                    key: 8,
-                    value: 50,
-                    pounds: "£50k",
-                    svg: { fill: "#FF6500" },
-                },
-            ],
-        },
-    ];
+    );
+
+    console.log(localPieChartTestData);
 
     //TODO Make default theme
     const theme = {
@@ -171,7 +182,7 @@ export default function PortfolioScreen() {
                 }}
                 columnWrapperStyle={{ justifyContent: "space-between" }}
                 numColumns={2}
-                data={data}
+                data={localPieChartTestData}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => {
                     return (

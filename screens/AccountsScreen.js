@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import { Button } from "react-native-material-ui";
-import * as SecureStore from "expo-secure-store";
+import { saveKeyValue, getKeyValue } from "../functions/keyStorage";
 
 let textValue = "This was never stored...";
 
@@ -15,7 +15,7 @@ export default function AccountsScreen() {
                 raised
                 accent
                 onPress={() => {
-                    save("StoredValue", "This string was stored!");
+                    saveKeyValue("StoredValue", "This string was stored!");
                     // onChangeKey("StoredValue");
                     // onChangeValue("This string was stored!");
                 }}
@@ -25,27 +25,10 @@ export default function AccountsScreen() {
                 raised
                 primary
                 onPress={() => {
-                    getValueFor("StoredValue");
-                    // onChangeKey("StoredValue");
-                    // onChangeValue("This string was stored!");
+                    getKeyValue("StoredValue");
                 }}
                 text="Button to update text"
             />
         </View>
     );
-}
-
-async function save(key, value) {
-    await SecureStore.setItemAsync(key, value);
-}
-
-async function getValueFor(key) {
-    let result = await SecureStore.getItemAsync(key);
-    if (result) {
-        alert("🔐 Here's your value 🔐 \n" + result);
-        textValue = result;
-    } else {
-        alert("No values stored under that key.");
-        return "failure somewhere!";
-    }
 }
