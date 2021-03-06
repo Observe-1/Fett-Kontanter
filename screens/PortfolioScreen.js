@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-import Model from "../Components/Cursor";
+import Model from "../Components/Model";
 
 const data = [
   { date: new Date(2018, 9, 1).getTime(), value: 0 },

@@ -19,7 +19,6 @@ const getDomain = (domain) => [
 ];
 
 export default function Model ({ data }) {
-  console.log(data)
   const scaleX = scaleTime()
     .domain(getDomain(data.map(d => d.date)))
     .range([0, width]);

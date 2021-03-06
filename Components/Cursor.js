@@ -4,7 +4,7 @@ import Animated from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 import { decay, clamp, parsePath, getPointAtLength } from "react-native-redash/lib/module/v1";
 
-const { Value, event, sub, interpolate } = Animated;
+const { Value, event, sub, interpolateNode } = Animated;
 const TOUCH_SIZE = 200;
 const { width } = Dimensions.get("window");
 const white = "white";
@@ -25,15 +25,17 @@ export default ({ d, r, borderWidth, borderColor }) => {
   ]);
   const cx = clamp(decay(translationX, state, velocityX), 0, width);
   const path = parsePath(d);
-  const length = interpolate(cx, {
+  const length = interpolateNode(cx, {
     inputRange: [0, width],
     outputRange: [0, path.totalLength]
   });
   const { y, x } = getPointAtLength(path, length);
   const translateX = sub(x, TOUCH_SIZE / 2);
   const translateY = sub(y, TOUCH_SIZE / 2);
-  return (
-    <View style={StyleSheet.absoluteFill}>
+  
+  return (        
+    <View style={StyleSheet.absoluteFill}>    
+    {console.log(onGestureEvent)}
       <PanGestureHandler
         onHandlerStateChange={onGestureEvent}
         {...{ onGestureEvent }}
