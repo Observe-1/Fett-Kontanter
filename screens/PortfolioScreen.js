@@ -14,6 +14,7 @@ import { useVector } from "react-native-redash";
 
 import { GraphIndex, graphs, SIZE } from "../Components/Model";
 import Cursor from "../Components/Cursor";
+import Header from "../Components/Header"
 
 const { width } = Dimensions.get("window");
 const AnimatedPath = Animated.createAnimatedComponent(Path);
@@ -156,6 +157,7 @@ const Graph = () => {
 
   return (
     <View style={styles.container}>
+      <Header translation={translation} index={current} />
       <View>
         <Svg width={SIZE} height={SIZE}>
           <AnimatedPath
