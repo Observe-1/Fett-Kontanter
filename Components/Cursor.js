@@ -1,66 +1,76 @@
-import * as React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
-import Animated from "react-native-reanimated";
-import { PanGestureHandler, State } from "react-native-gesture-handler";
-import { decay, clamp, parsePath, getPointAtLength } from "react-native-redash/lib/module/v1";
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { PanGestureHandler } from "react-native-gesture-handler";
+import Animated, {
+  useAnimatedGestureHandler,
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+} from "react-native-reanimated";
+import { getYForX, Vector } from "react-native-redash";
 
-const { Value, event, sub, interpolateNode } = Animated;
-const TOUCH_SIZE = 200;
-const { width } = Dimensions.get("window");
-const white = "white";
+import { GraphIndex, graphs } from "./Model";
 
-export default ({ d, r, borderWidth, borderColor }) => {
-  const radius = r + borderWidth / 2;
-  const translationX = new Value(0);
-  const velocityX = new Value(0);
-  const state = new Value(State.UNDETERMINED);
-  const onGestureEvent = event([
-    {
-      nativeEvent: {
-        translationX,
-        velocityX,
-        state
-      }
-    }
-  ]);
-  const cx = clamp(decay(translationX, state, velocityX), 0, width);
-  const path = parsePath(d);
-  const length = interpolateNode(cx, {
-    inputRange: [0, width],
-    outputRange: [0, path.totalLength]
+const CURSOR = 50;
+const styles = StyleSheet.create({
+  cursor: {
+    width: CURSOR,
+    height: CURSOR,
+    borderRadius: CURSOR / 2,
+    backgroundColor: "rgba(0, 0, 0, 0.1)",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cursorBody: {
+    width: 15,
+    height: 15,
+    borderRadius: 7.5,
+    backgroundColor: "black",
+  },
+});
+
+
+const Cursor = ({ index, translation }) => {
+  const isActive = useSharedValue(false);
+  const onGestureEvent = useAnimatedGestureHandler({
+    onStart: () => {
+      isActive.value = true;
+    },
+    onActive: (event) => {
+      translation.x.value = event.x;
+      translation.y.value = getYForX(
+        graphs[index.value].data.path,
+        translation.x.value
+      );
+    },
+    onEnd: () => {
+      isActive.value = false;
+    },
   });
-  const { y, x } = getPointAtLength(path, length);
-  const translateX = sub(x, TOUCH_SIZE / 2);
-  const translateY = sub(y, TOUCH_SIZE / 2);
-  
-  return (        
-    <View style={StyleSheet.absoluteFill}>    
-    {console.log(onGestureEvent)}
-      <PanGestureHandler
-        onHandlerStateChange={onGestureEvent}
-        {...{ onGestureEvent }}
-      >
-        <Animated.View
-          style={{
-            transform: [{ translateX }, { translateY }],
-            width: TOUCH_SIZE,
-            height: TOUCH_SIZE,
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <View
-            style={{
-              width: radius * 2,
-              height: radius * 2,
-              borderRadius: radius,
-              borderColor,
-              borderWidth,
-              backgroundColor: white
-            }}
-          />
+
+  const style = useAnimatedStyle(() => {
+    const translateX = translation.x.value - CURSOR / 2;
+    const translateY = translation.y.value - CURSOR / 2;
+    return {
+      transform: [
+        { translateX },
+        { translateY },
+        { scale: withSpring(isActive.value ? 1 : 0) },
+      ],
+    };
+  });
+
+  return (
+    <View style={StyleSheet.absoluteFill}>
+      <PanGestureHandler {...{ onGestureEvent }}>
+        <Animated.View style={StyleSheet.absoluteFill}>
+          <Animated.View style={[styles.cursor, style]}>
+            <View style={styles.cursorBody} />
+          </Animated.View>
         </Animated.View>
       </PanGestureHandler>
     </View>
   );
 };
+
+export default Cursor;

@@ -1,65 +1,70 @@
-import * as React from "react";
-import { View, Dimensions, StyleSheet } from "react-native";
-import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
-import { scaleTime, scaleLinear } from "d3-scale";
+/* eslint-disable camelcase */
 import * as shape from "d3-shape";
+import { scaleLinear } from "d3-scale";
+import { Dimensions } from "react-native";
+import { parse } from "react-native-redash";
 
-import Cursor from "../Components/Cursor";
+import data from "./data.json";
 
-const φ = (1 + Math.sqrt(5)) / 2;
-const { width, height: wHeight } = Dimensions.get("window");
-const height = (1 - 1 / φ) * wHeight;
-const strokeWidth = 4;
-const padding = strokeWidth / 2;
-const CURSOR_RADIUS = 8;
-const STROKE_WIDTH = CURSOR_RADIUS / 2;
-const getDomain = (domain) => [
-  Math.min(...domain),
-  Math.max(...domain)
-];
+export const SIZE = Dimensions.get("window").width;
 
-export default function Model ({ data }) {
-  const scaleX = scaleTime()
-    .domain(getDomain(data.map(d => d.date)))
-    .range([0, width]);
-  const scaleY = scaleLinear()
-    .domain(getDomain(data.map(d => d.value)))
-    .range([height - padding, padding]);
-  const d = shape
-    .line()
-    .x(p => scaleX(p.date))
-    .y(p => scaleY(p.value))
-    .curve(shape.curveBasis)(data);
-  
-  return (
-    <View style={styles.container}>
-      <Svg style={StyleSheet.absoluteFill}>
-        <Defs>
-          <LinearGradient id="gradient" x1="50%" y1="0%" x2="50%" y2="100%">
-            <Stop offset="0%" stopColor="#cee3f9" />
-            <Stop offset="80%" stopColor="#ddedfa" />
-            <Stop offset="100%" stopColor="#feffff" />
-          </LinearGradient>
-        </Defs>
-        <Path
-          d={`${d}L ${width} ${height} L 0 ${height}`}
-          fill="url(#gradient)"
-        />
-        <Path fill="transparent" stroke="#3977e3" {...{ d, strokeWidth }} /> 
-      </Svg>
-      <Cursor
-        r={CURSOR_RADIUS}
-        borderWidth={STROKE_WIDTH}
-        borderColor="#3977e3"
-        {...{ d }}
-      />
-    </View>
+const values = data.data.prices;
+const POINTS = 60;
+
+const buildGraph = (datapoints, label) => {
+  const priceList = datapoints.prices.slice(0, POINTS);
+  const formattedValues = priceList.map(
+    (price) => [parseFloat(price[0]), price[1]]
   );
+  const prices = formattedValues.map((value) => value[0]);
+  const dates = formattedValues.map((value) => value[1]);
+  const scaleX = scaleLinear()
+    .domain([Math.min(...dates), Math.max(...dates)])
+    .range([0, SIZE]);
+  const minPrice = Math.min(...prices);
+  const maxPrice = Math.max(...prices);
+  const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 0]);
+  return {
+    label,
+    minPrice,
+    maxPrice,
+    percentChange: datapoints.percent_change,
+    path: parse(
+      shape
+        .line()
+        .x(([, x]) => scaleX(x))
+        .y(([y]) => scaleY(y))
+        .curve(shape.curveBasis)(formattedValues)
+    ),
+  };
 };
 
-const styles = StyleSheet.create({
-  container: {
-    width,
-    height
-  }
-});
+export const graphs = [
+  {
+    label: "1H",
+    value: 0,
+    data: buildGraph(values.hour, "Last Hour"),
+  },
+  {
+    label: "1D",
+    value: 1,
+    data: buildGraph(values.day, "Today"),
+  },
+  {
+    label: "1M",
+    value: 2,
+    data: buildGraph(values.month, "Last Month"),
+  },
+  {
+    label: "1Y",
+    value: 3,
+    data: buildGraph(values.year, "This Year"),
+  },
+  {
+    label: "all",
+    value: 4,
+    data: buildGraph(values.all, "All time"),
+  },
+];
+
+export const GraphIndex = 0 | 1 | 2 | 3 | 4;
