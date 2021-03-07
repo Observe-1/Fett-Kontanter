@@ -54,16 +54,6 @@ const Graph = () => {
   const previous = useSharedValue(0);
   const current = useSharedValue(0);
 
-  const mixPath = (
-    value,
-    p1,
-    p2,
-    extrapolate = Animated.Extrapolate.CLAMP
-  ) => {
-    "worklet";
-    return interpolatePath(value, [0, 1], [p1, p2], extrapolate);
-  };
-
   const serialize = (path) => {
     "worklet";
     return `M${path.move.x},${path.move.y} ${path.curves
@@ -141,6 +131,16 @@ const Graph = () => {
     };
     return serialize(path);
   };
+
+  const mixPath = (
+    value,
+    p1,
+    p2,
+    extrapolate = Animated.Extrapolate.CLAMP
+  ) => {
+    "worklet";
+    return interpolatePath(value, [0, 1], [p1, p2], extrapolate);
+  };
   
   const animatedProps = useAnimatedProps(() => {
     const previousPath = graphs[previous.value].data.path;
@@ -153,7 +153,7 @@ const Graph = () => {
   const style = useAnimatedStyle(() => ({
     transform: [{ translateX: withTiming(BUTTON_WIDTH * current.value) }],
   }));
-  
+
   return (
     <View style={styles.container}>
       <View>
