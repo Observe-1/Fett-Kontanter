@@ -7,8 +7,8 @@ export default function OverviewScreen() {
         <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-            <Text>Overview!</Text>
-            <Button raised accent text="Button to nowhere lol" />
+            <Text>Fett Kontanter</Text>
+            <Button raised accent text="Add fat cash button" />
         </View>
     );
 }
