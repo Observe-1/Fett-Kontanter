@@ -1,5 +1,7 @@
 import * as React from "react";
-import { Text, View } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
+const fs = require("fs-extra");
+import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -13,6 +15,22 @@ import SettingsScreen from "./screens/SettingsScreen";
 const Tab = createMaterialBottomTabNavigator();
 
 export default function App() {
+    //TODO Remove (Keeps splash screen on)
+    SplashScreen.preventAutoHideAsync();
+    setTimeout(SplashScreen.hideAsync, 2000);
+
+    AsyncStorage.getItem("alreadyLaunchedBool").then((value) => {
+        //TODO Remove
+        if (true) {
+            // if (value == null) {
+            AsyncStorage.setItem("alreadyLaunchedBool", "true");
+
+            console.log("First time setup done.");
+        } else {
+            // openDatabase("fettKontanterDb");
+        }
+    });
+
     return (
         <NavigationContainer>
             <AppTabs />
