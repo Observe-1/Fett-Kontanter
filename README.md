@@ -1,4 +1,4 @@
-# Fett Kontanter
+# Fett Kontanter: Net Worth Tracker
 
 (Fat Cash in Swedish)
 
