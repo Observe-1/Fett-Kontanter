@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as SplashScreen from "expo-splash-screen";
-const fs = require("fs-extra");
+import * as SQLite from "expo-sqlite";
 import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -13,21 +13,18 @@ import PortfolioScreen from "./screens/PortfolioScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 
 const Tab = createMaterialBottomTabNavigator();
+const db = SQLite.openDatabase("./schema/fettKontanter.db");
 
 export default function App() {
     //TODO Remove (Keeps splash screen on)
     SplashScreen.preventAutoHideAsync();
-    setTimeout(SplashScreen.hideAsync, 2000);
+    setTimeout(SplashScreen.hideAsync, 1000);
 
     AsyncStorage.getItem("alreadyLaunchedBool").then((value) => {
-        //TODO Remove
-        if (true) {
-            // if (value == null) {
+        if (value == null) {
             AsyncStorage.setItem("alreadyLaunchedBool", "true");
 
             console.log("First time setup done.");
-        } else {
-            // openDatabase("fettKontanterDb");
         }
     });
 

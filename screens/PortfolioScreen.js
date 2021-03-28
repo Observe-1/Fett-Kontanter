@@ -7,7 +7,7 @@ import { Grid, AreaChart, PieChart, LineChart } from "react-native-svg-charts";
 import { Card } from "react-native-paper";
 import { Text, FlatList } from "react-native";
 
-import LabelledPieChart from "../components/LabelledPieChart";
+// import LabelledPieChart from "../components/LabelledPieChart";
 
 export default async function PortfolioScreen() {
     saveKeyValue(
@@ -203,7 +203,7 @@ export default async function PortfolioScreen() {
                                     top: "-20%",
                                 }}
                             >
-                                <LabelledPieChart pieData={item.value} />
+                                {/* <LabelledPieChart pieData={item.value} /> */}
                             </Card.Content>
                         </Card>
                     );
