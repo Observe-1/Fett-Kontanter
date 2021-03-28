@@ -47,14 +47,15 @@ export default class App extends React.Component {
         } else if (this.state.firstLaunch === null) {
             console.log("First time setup initialising.");
             createDatabase(db);
-            //TODO Remove?
             truncateDatabase(db);
             AsyncStorage.setItem("firstLaunch", "false");
             return <FirstLaunchScreen db={db} />;
         } else {
             console.log("Rendering app.");
-            truncateDatabase(db);
-            createPrimaryUserDEBUG(db);
+
+            //TODO Remove Dev Tools
+            // truncateDatabase(db);
+            // createPrimaryUserDEBUG(db);
             return (
                 <NavigationContainer>
                     <AppTabs db={db} />
