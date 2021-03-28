@@ -1,5 +1,7 @@
 import * as React from "react";
-import { Text, View } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
+import * as SQLite from "expo-sqlite";
+import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -11,8 +13,21 @@ import PortfolioScreen from "./screens/PortfolioScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 
 const Tab = createMaterialBottomTabNavigator();
+const db = SQLite.openDatabase("./schema/fettKontanter.db");
 
 export default function App() {
+    //TODO Remove (Keeps splash screen on)
+    SplashScreen.preventAutoHideAsync();
+    setTimeout(SplashScreen.hideAsync, 1000);
+
+    AsyncStorage.getItem("alreadyLaunchedBool").then((value) => {
+        if (value == null) {
+            AsyncStorage.setItem("alreadyLaunchedBool", "true");
+
+            console.log("First time setup done.");
+        }
+    });
+
     return (
         <NavigationContainer>
             <AppTabs />

@@ -1,0 +1,27 @@
+Investment/Debt List
+
+*stocks
+*cryptocurrencies
+*currencies
+*indicies 
+*funds
+futures 
+*bonds 
+forwards
+options
+swaps
+annuities
+commodities
+cash
+properties
+cars
+other assets
+private companies
+pensions
+(forex?)
+
+loan
+mortgage
+car loan
+credit card
+overdraft*-+
