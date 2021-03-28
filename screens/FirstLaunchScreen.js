@@ -1,11 +1,30 @@
 import * as React from "react";
 import { Text, View, TextInput } from "react-native";
 import { Button } from "react-native-material-ui";
-import { Avatar, Card, DataTable, Paragraph } from "react-native-paper";
+import { Card } from "react-native-paper";
+import { Restart } from "fiction-expo-restart";
 
-export default function FirstLaunchScreen() {
-    const [text, onChangeText] = React.useState("");
+function submitName(db, userName) {
+    db.transaction((tx) => {
+        tx.executeSql(
+            `INSERT INTO users (user_id, name) VALUES (0, '${userName}');`,
+            [],
+            success,
+            error,
+        );
+    });
 
+    Restart();
+}
+
+//TODO do this better
+function success() {}
+function error(transaction, error) {
+    alert(error);
+}
+
+export default function FirstLaunchScreen(props) {
+    const [userName, onChangeuserName] = React.useState("");
     return (
         <View
             style={{
@@ -28,14 +47,17 @@ export default function FirstLaunchScreen() {
                 <Card.Content>
                     <TextInput
                         style={{ margin: 20 }}
-                        onChangeText={onChangeText}
+                        onChangeText={onChangeuserName}
                         placeholder="Your Name"
-                        value={text}
+                        value={userName}
                     />
                     <Button
                         styles={{ margin: 15 }}
                         raised
                         primary
+                        onPress={function () {
+                            submitName(props.db, userName);
+                        }}
                         text="Submit"
                     />
                 </Card.Content>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as SplashScreen from "expo-splash-screen";
 import * as SQLite from "expo-sqlite";
+import { Platform } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -11,36 +12,64 @@ import FlowsScreen from "./screens/FlowsScreen";
 import OverviewScreen from "./screens/OverviewScreen";
 import PortfolioScreen from "./screens/PortfolioScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import FirstLaunchScreen from "./screens/FirstLaunchScreen";
+import LoadingScreen from "./screens/LoadingScreen";
+
+import createDatabase from "./functions/dba/createDatabase";
+import truncateDatabase from "./functions/dba/truncateDatabase";
+import createPrimaryUserDEBUG from "./functions/dba/createPrimaryUserDEBUG";
 
 const Tab = createMaterialBottomTabNavigator();
-const db = SQLite.openDatabase("./schema/fettKontanter.db");
 
-export default function App() {
-    //TODO Remove (Keeps splash screen on)
-    SplashScreen.preventAutoHideAsync();
-    setTimeout(SplashScreen.hideAsync, 1000);
+const db = SQLite.openDatabase("fettKontanter.db");
 
-    AsyncStorage.getItem("alreadyLaunchedBool").then((value) => {
-        if (value == null) {
-            AsyncStorage.setItem("alreadyLaunchedBool", "true");
+export default class App extends React.Component {
+    constructor() {
+        super();
+        this.state = { firstLaunch: "notRetrieved" };
 
-            console.log("First time setup done.");
+        //TODO Remove (Keeps splash screen on)
+        // SplashScreen.preventAutoHideAsync();
+        // setTimeout(SplashScreen.hideAsync, 1000);
+    }
+
+    componentDidMount() {
+        //TODO Remove
+        // AsyncStorage.clear();
+        AsyncStorage.getItem("firstLaunch").then((value) => {
+            this.setState({ firstLaunch: value });
+        });
+    }
+
+    render() {
+        if (this.state.firstLaunch == "notRetrieved") {
+            return <LoadingScreen />;
+        } else if (this.state.firstLaunch === null) {
+            console.log("First time setup initialising.");
+            createDatabase(db);
+            //TODO Remove?
+            truncateDatabase(db);
+            AsyncStorage.setItem("firstLaunch", "false");
+            return <FirstLaunchScreen db={db} />;
+        } else {
+            console.log("Rendering app.");
+            truncateDatabase(db);
+            createPrimaryUserDEBUG(db);
+            return (
+                <NavigationContainer>
+                    <AppTabs db={db} />
+                </NavigationContainer>
+            );
         }
-    });
-
-    return (
-        <NavigationContainer>
-            <AppTabs />
-        </NavigationContainer>
-    );
+    }
 }
 
-function AppTabs() {
+function AppTabs(props) {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName="Overview">
             <Tab.Screen
                 name="Accounts"
-                component={AccountsScreen}
+                children={() => <AccountsScreen db={props.db} />}
                 options={{
                     tabBarLabel: "Accounts",
                     tabBarColor: "#009387",
@@ -52,7 +81,7 @@ function AppTabs() {
 
             <Tab.Screen
                 name="Flows"
-                component={FlowsScreen}
+                children={() => <FlowsScreen db={props.db} />}
                 options={{
                     tabBarLabel: "Flows",
                     tabBarColor: "#1f65ff",
@@ -64,7 +93,7 @@ function AppTabs() {
 
             <Tab.Screen
                 name="Overview"
-                component={OverviewScreen}
+                children={() => <OverviewScreen db={props.db} />}
                 options={{
                     tabBarLabel: "Overview",
                     tabBarColor: "#694fad",
@@ -76,7 +105,7 @@ function AppTabs() {
 
             <Tab.Screen
                 name="Portfolio"
-                component={PortfolioScreen}
+                children={() => <PortfolioScreen db={props.db} />}
                 options={{
                     tabBarLabel: "Portfolio",
                     tabBarColor: "#d02860",
@@ -88,7 +117,7 @@ function AppTabs() {
 
             <Tab.Screen
                 name="Settings"
-                component={SettingsScreen}
+                children={() => <SettingsScreen db={props.db} />}
                 options={{
                     tabBarLabel: "Settings",
                     tabBarColor: "#ff0002",

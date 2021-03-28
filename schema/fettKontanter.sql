@@ -1,12 +1,3 @@
---
--- File generated with SQLiteStudio v3.3.2 on Sun Mar 28 02:09:36 2021
---
--- Text encoding used: UTF-8
---
-PRAGMA foreign_keys = off;
-BEGIN TRANSACTION;
-
--- Table: assets
 CREATE TABLE assets (
     asset_id INTEGER PRIMARY KEY
                      NOT NULL
@@ -16,8 +7,6 @@ CREATE TABLE assets (
     name     TEXT    NOT NULL
 );
 
-
--- Table: assetValue
 CREATE TABLE assetValue (
     assetValue_id   INTEGER  PRIMARY KEY
                              NOT NULL
@@ -29,8 +18,6 @@ CREATE TABLE assetValue (
     dateTimeEntered DATETIME NOT NULL
 );
 
-
--- Table: liabilities
 CREATE TABLE liabilities (
     liability_id INTEGER PRIMARY KEY
                          NOT NULL
@@ -40,8 +27,6 @@ CREATE TABLE liabilities (
     name         TEXT    NOT NULL
 );
 
-
--- Table: liabilityValue
 CREATE TABLE liabilityValue (
     liabilityValue_id INTEGER  PRIMARY KEY
                                NOT NULL
@@ -53,8 +38,6 @@ CREATE TABLE liabilityValue (
     dateTimeEntered   DATETIME NOT NULL
 );
 
-
--- Table: users
 CREATE TABLE users (
     user_id  INTEGER PRIMARY KEY
                      UNIQUE
@@ -63,7 +46,3 @@ CREATE TABLE users (
     currency TEXT    DEFAULT GDP
                      NOT NULL
 );
-
-
-COMMIT TRANSACTION;
-PRAGMA foreign_keys = on;

@@ -12,7 +12,7 @@ const rows = [
     createData("Ice cream sandwich", 237, 9.0),
 ];
 
-export default function FlowsScreen() {
+export default function FlowsScreen(props) {
     return (
         <View style={{ flex: 1, justifyContent: "center" }}>
             {/* <Button raised accent text="Edit" /> */}
