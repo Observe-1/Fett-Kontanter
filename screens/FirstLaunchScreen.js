@@ -15,7 +15,7 @@ export default function FirstLaunchScreen() {
                 />
                 <Card.Content>
                     <TextInput onChangeText={onChangeText} value={text} />
-                    <Button raised accent text="Submit" />
+                    <Button raised primary text="Submit" />
                 </Card.Content>
             </Card>
         </View>
