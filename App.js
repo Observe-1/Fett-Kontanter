@@ -16,7 +16,7 @@ import FirstLaunchScreen from "./screens/FirstLaunchScreen";
 import LoadingScreen from "./screens/LoadingScreen";
 
 import createDatabase from "./functions/dba/createDatabase";
-import truncateDatabase from "./functions/dba/truncateDatabase";
+import truncateUserTable from "./functions/dba/truncateUserTable";
 import createPrimaryUserDEBUG from "./functions/dba/createPrimaryUserDEBUG";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -43,14 +43,13 @@ export default class App extends React.Component {
         } else if (this.state.firstLaunch === null) {
             console.log("First time setup initialising.");
             createDatabase(db);
-            truncateDatabase(db);
             AsyncStorage.setItem("firstLaunch", "false");
             return <FirstLaunchScreen db={db} />;
         } else {
             console.log("Rendering app.");
 
             //TODO Remove Dev Tools
-            // truncateDatabase(db);
+            // truncateUserTable(db);
             // createPrimaryUserDEBUG(db);
             return (
                 <NavigationContainer>
