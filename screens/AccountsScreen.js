@@ -5,7 +5,7 @@ import { saveKeyValue, getKeyValue } from "../functions/keyStorage";
 
 let textValue = "This was never stored...";
 
-export default function AccountsScreen() {
+export default function AccountsScreen(props) {
     return (
         <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}

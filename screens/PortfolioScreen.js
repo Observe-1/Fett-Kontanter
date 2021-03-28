@@ -9,7 +9,7 @@ import { Text, FlatList } from "react-native";
 
 // import LabelledPieChart from "../components/LabelledPieChart";
 
-export default async function PortfolioScreen() {
+export default async function PortfolioScreen(props) {
     saveKeyValue(
         "pieChartTestData",
         JSON.stringify([
