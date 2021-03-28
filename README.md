@@ -11,4 +11,4 @@ With an easy to use interface and a planned 10+ trackable elements, all you have
 
 Currently only supporting 💷 £ - GDP 💷 with plans for external currencies 💴💵.
 
-<img src="./Logos/1.png"/>
+<img src="./assets/Logos/1.png"/>
