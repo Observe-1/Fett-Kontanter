@@ -13,12 +13,12 @@ function submitName(db, userName) {
             error,
         );
     });
-
-    Restart();
 }
 
 //TODO do this better
-function success() {}
+function success() {
+    Restart();
+}
 function error(transaction, error) {
     alert(error);
 }
