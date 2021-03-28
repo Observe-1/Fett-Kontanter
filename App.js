@@ -27,10 +27,6 @@ export default class App extends React.Component {
     constructor() {
         super();
         this.state = { firstLaunch: "notRetrieved" };
-
-        //TODO Remove (Keeps splash screen on)
-        // SplashScreen.preventAutoHideAsync();
-        // setTimeout(SplashScreen.hideAsync, 1000);
     }
 
     componentDidMount() {
