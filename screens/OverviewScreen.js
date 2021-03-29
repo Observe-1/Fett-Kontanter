@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-material-ui";
+import { Card } from "react-native-paper";
 import { FlatGrid } from "react-native-super-grid";
 
 import getPrimaryUser from "../functions/dba/getPrimaryUser";
@@ -70,7 +71,8 @@ export default function OverviewScreen(props) {
                 // fixed
                 spacing={20}
                 renderItem={({ item }) => (
-                    <View
+                    <Card
+                        // elevation={5}
                         style={[
                             styles.itemContainer,
                             { backgroundColor: item.code },
@@ -97,7 +99,7 @@ export default function OverviewScreen(props) {
                                 A table goes here
                             </Text>
                         )}
-                    </View>
+                    </Card>
                 )}
             />
         </View>
