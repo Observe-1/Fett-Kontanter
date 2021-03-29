@@ -14,7 +14,6 @@ export default function GridCards(props) {
             spacing={20}
             renderItem={({ item }) => (
                 <Card
-                    // elevation={5}
                     style={[
                         props.styles.itemContainer,
                         { backgroundColor: item.code },

@@ -40,18 +40,22 @@ export default function OverviewScreen(props) {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
+            <View style={props.styles.topTextSection}>
                 <WelcomeName db={props.db} fontSize={25} />
                 <Text style={{ fontSize: 20 }}>
                     Let's look at your portfolio.
                 </Text>
             </View>
-            <BigCard styles={styles} />
-            <GridCards data={items} showModal={showModal} styles={styles} />
+            <BigCard styles={props.styles} />
+            <GridCards
+                data={items}
+                showModal={showModal}
+                styles={props.styles}
+            />
             <Modal visible={visible} onDismiss={hideModal}>
                 <Card
                     style={[
-                        styles.modalCard,
+                        props.styles.modalCard,
                         {
                             backgroundColor: modalItem.code,
                             elevation: 0,
@@ -70,37 +74,3 @@ export default function OverviewScreen(props) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    gridView: {
-        marginTop: 20,
-        flex: 1,
-        flexGrow: 1,
-    },
-    itemContainer: {
-        flex: 1,
-        justifyContent: "flex-end",
-        borderRadius: 10,
-        padding: 10,
-        height: 150,
-    },
-    modalCard: {
-        flex: 1,
-        justifyContent: "flex-end",
-        borderRadius: 10,
-        padding: 10,
-        minHeight: "80%",
-        marginLeft: 20,
-        marginRight: 20,
-    },
-    itemName: {
-        fontSize: 16,
-        color: "#fff",
-        fontWeight: "600",
-    },
-    itemCode: {
-        fontWeight: "600",
-        fontSize: 12,
-        color: "#fff",
-    },
-});

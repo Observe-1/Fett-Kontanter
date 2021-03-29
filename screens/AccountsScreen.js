@@ -7,9 +7,7 @@ let textValue = "This was never stored...";
 
 export default function AccountsScreen(props) {
     return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
+        <View style={[props.styles.centerView, { alignItems: "center" }]}>
             <Text> {textValue} </Text>
             <Button
                 raised
