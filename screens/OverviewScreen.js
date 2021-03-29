@@ -35,7 +35,7 @@ export default function OverviewScreen(props) {
     }
 
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
                 <Text style={{ fontSize: 25 }}>Hello {user.name}!</Text>
                 <Text style={{ fontSize: 20 }}>
@@ -107,9 +107,8 @@ export default function OverviewScreen(props) {
 const styles = StyleSheet.create({
     gridView: {
         marginTop: 20,
-        flex: 0,
-        //TODO improve max height
-        height: "55%",
+        flex: 1,
+        flexGrow: 1,
     },
     itemContainer: {
         justifyContent: "flex-end",
