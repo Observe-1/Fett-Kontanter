@@ -109,22 +109,8 @@ export default function OverviewScreen(props) {
                     </Card>
                 )}
             />
-            <Modal
-                style={{ absolute: 1 }}
-                visible={visible}
-                onDismiss={hideModal}
-            >
-                <Card
-                    // elevation={5}
-                    style={[
-                        styles.itemContainer,
-                        {
-                            minHeight: "80%",
-                            marginLeft: 20,
-                            marginRight: 20,
-                        },
-                    ]}
-                >
+            <Modal visible={visible} onDismiss={hideModal}>
+                <Card style={styles.modalCard}>
                     <Text>{modalContent}</Text>
                 </Card>
             </Modal>
@@ -144,6 +130,15 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         height: 150,
+    },
+    modalCard: {
+        flex: 1,
+        justifyContent: "flex-end",
+        borderRadius: 10,
+        padding: 10,
+        minHeight: "80%",
+        marginLeft: 20,
+        marginRight: 20,
     },
     itemName: {
         fontSize: 16,
