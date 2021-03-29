@@ -48,6 +48,20 @@ export default function OverviewScreen(props) {
                     text="Add fat cash button"
                 />
             </View>
+            <View
+                style={[
+                    styles.itemContainer,
+                    {
+                        backgroundColor: "#7f8c8d",
+                        marginTop: 20,
+                        marginLeft: 10,
+                        marginRight: 10,
+                        height: 250,
+                    },
+                ]}
+            >
+                <Text style={styles.itemName}>A BIG line chart goes here</Text>
+            </View>
             <FlatGrid
                 itemDimension={140}
                 data={items}
