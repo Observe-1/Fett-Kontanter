@@ -30,10 +30,10 @@ export default function OverviewScreen(props) {
     ]);
 
     const [visible, setVisible] = React.useState(false);
-    const [modalContent, setmodalContent] = React.useState("");
+    const [modalItem, setmodalItem] = React.useState("");
 
-    function showModal(category) {
-        setmodalContent(category);
+    function showModal(item) {
+        setmodalItem(item);
         setVisible(true);
     }
     const hideModal = () => setVisible(false);
@@ -49,8 +49,19 @@ export default function OverviewScreen(props) {
             <BigCard styles={styles} />
             <GridCards data={items} showModal={showModal} styles={styles} />
             <Modal visible={visible} onDismiss={hideModal}>
-                <Card style={styles.modalCard}>
-                    <Text>{modalContent}</Text>
+                <Card
+                    style={[
+                        styles.modalCard,
+                        { backgroundColor: modalItem.code },
+                    ]}
+                >
+                    <Text>
+                        {modalItem.name +
+                            " - " +
+                            modalItem.category +
+                            " - " +
+                            modalItem.code}
+                    </Text>
                 </Card>
             </Modal>
         </View>

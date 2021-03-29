@@ -20,7 +20,7 @@ export default function GridCards(props) {
                         { backgroundColor: item.code },
                     ]}
                     onPress={() => {
-                        props.showModal(item.category);
+                        props.showModal(item);
                     }}
                 >
                     {item.category == "text" && (
