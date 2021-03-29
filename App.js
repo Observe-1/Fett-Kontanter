@@ -70,7 +70,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Accounts",
-                    tabBarColor: "#009387",
+                    tabBarColor: "#3e4a95",
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-card" color={color} size={24} />
                     ),
@@ -82,7 +82,7 @@ function AppTabs(props) {
                 children={() => <FlowsScreen db={props.db} styles={styles} />}
                 options={{
                     tabBarLabel: "Flows",
-                    tabBarColor: "#1f65ff",
+                    tabBarColor: "#323d75",
                     tabBarIcon: ({ color }) => (
                         <Icon name="swap-horizontal" color={color} size={24} />
                     ),
@@ -96,7 +96,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Overview",
-                    tabBarColor: "#2F3A4A",
+                    tabBarColor: "#344052",
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-home" color={color} size={24} />
                     ),
@@ -110,7 +110,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Portfolio",
-                    tabBarColor: "#d02860",
+                    tabBarColor: "#323d75",
                     tabBarIcon: ({ color }) => (
                         <Icon name="pie-chart" color={color} size={24} />
                     ),
@@ -124,7 +124,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Settings",
-                    tabBarColor: "#ff0002",
+                    tabBarColor: "#3e4a95",
                     tabBarIcon: ({ color }) => (
                         <Icon name="settings-sharp" color={color} size={24} />
                     ),

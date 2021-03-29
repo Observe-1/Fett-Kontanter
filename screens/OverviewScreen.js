@@ -1,12 +1,11 @@
 import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Modal, Card } from "react-native-paper";
-import { LinearGradient } from "expo-linear-gradient";
-import { BlurView } from "expo-blur";
 
 import GridCards from "../components/GridCards";
 import BigCard from "../components/BigCard";
 import WelcomeName from "../components/WelcomeName";
+import FettKontanterView from "../components/FettKontanterView";
 
 export default function OverviewScreen(props) {
     const [items, setItems] = React.useState([
@@ -41,65 +40,38 @@ export default function OverviewScreen(props) {
     const hideModal = () => setVisible(false);
 
     return (
-        <LinearGradient
-            style={{ flex: 1 }}
-            // colors={[
-            //     "rgba(53,45,184,1)",
-            //     "rgba(66,127,194,1)",
-            //     "rgba(81,186,158,1)",
-            //     "rgba(205,244,233,1)",
-            // ]}
-            // locations={[0, 0.3, 0.7, 1]}
-            // end={{ x: 1, y: 1 }}
-            // start={{ x: 0, y: 0 }}
-
-            // colors={["rgba(194,46,208,1)", "rgba(95,250,224,1)"]}
-            // locations={[0, 1]}
-            // end={{ x: 1, y: 1 }}
-            // start={{ x: 0, y: 0 }}
-
-            colors={["#2F3A4A", "rgba(80,92,112,1)", "rgba(255,204,82,1)"]}
-            locations={[0, 0.5, 1]}
-            end={{ x: 1, y: 1 }}
-            start={{ x: 0, y: 0 }}
-            style={[props.styles.centerView, { alignItems: "center" }]}
-        >
-            <BlurView
-                intensity={0}
-                // style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}
-            >
-                <View style={props.styles.topTextSection}>
-                    <WelcomeName db={props.db} fontSize={25} />
-                    <Text style={{ fontSize: 20 }}>
-                        Let's look at your portfolio.
+        <FettKontanterView styles={props.styles}>
+            <View style={props.styles.topTextSection}>
+                <WelcomeName db={props.db} fontSize={25} />
+                <Text style={{ fontSize: 20 }}>
+                    Let's look at your portfolio.
+                </Text>
+            </View>
+            <BigCard styles={props.styles} />
+            <GridCards
+                data={items}
+                showModal={showModal}
+                styles={props.styles}
+            />
+            <Modal visible={visible} onDismiss={hideModal}>
+                <Card
+                    style={[
+                        props.styles.modalCard,
+                        {
+                            backgroundColor: modalItem.code,
+                            elevation: 0,
+                        },
+                    ]}
+                >
+                    <Text>
+                        {modalItem.name +
+                            " - " +
+                            modalItem.category +
+                            " - " +
+                            modalItem.code}
                     </Text>
-                </View>
-                <BigCard styles={props.styles} />
-                <GridCards
-                    data={items}
-                    showModal={showModal}
-                    styles={props.styles}
-                />
-                <Modal visible={visible} onDismiss={hideModal}>
-                    <Card
-                        style={[
-                            props.styles.modalCard,
-                            {
-                                backgroundColor: modalItem.code,
-                                elevation: 0,
-                            },
-                        ]}
-                    >
-                        <Text>
-                            {modalItem.name +
-                                " - " +
-                                modalItem.category +
-                                " - " +
-                                modalItem.code}
-                        </Text>
-                    </Card>
-                </Modal>
-            </BlurView>
-        </LinearGradient>
+                </Card>
+            </Modal>
+        </FettKontanterView>
     );
 }

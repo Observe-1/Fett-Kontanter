@@ -8,6 +8,7 @@ import { Card } from "react-native-paper";
 import { Text, FlatList } from "react-native";
 
 // import LabelledPieChart from "../components/LabelledPieChart";
+import FettKontanterView from "../components/FettKontanterView";
 
 export default function PortfolioScreen(props) {
     //TODO Make default theme
@@ -154,7 +155,8 @@ export default function PortfolioScreen(props) {
     ]);
 
     return (
-        <View
+        <FettKontanterView
+            styles={props.styles}
             style={{
                 flex: 1,
                 justifyContent: "space-between",
@@ -197,6 +199,6 @@ export default function PortfolioScreen(props) {
                     </Card>;
                 }}
             />
-        </View>
+        </FettKontanterView>
     );
 }

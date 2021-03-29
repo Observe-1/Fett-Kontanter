@@ -3,6 +3,8 @@ import { Text, View } from "react-native";
 import { Button } from "react-native-material-ui";
 import { Avatar, Card, DataTable, Paragraph } from "react-native-paper";
 
+import FettKontanterView from "../components/FettKontanterView";
+
 function createData(name, amount, percentage) {
     return { name, amount, percentage };
 }
@@ -12,12 +14,17 @@ const rows = [
     createData("Ice cream sandwich", 237, 9.0),
 ];
 
+//TODO Make theme or remake component to support glassmorphism (text is currently black)
 export default function FlowsScreen(props) {
     return (
-        <View style={props.styles.centerView}>
+        <FettKontanterView styles={props.styles}>
             {/* <Button raised accent text="Edit" /> */}
 
-            <Card>
+            <Card
+                style={{
+                    backgroundColor: "rgba(0, 0, 0, 0.25)",
+                }}
+            >
                 <Card.Title title="Inflow 💰" subtitle="All money coming in." />
                 <Card.Content>
                     <DataTable>
@@ -38,7 +45,7 @@ export default function FlowsScreen(props) {
 
             {/* TODO Remove below*/}
             <Text> </Text>
-            <Card>
+            <Card style={{ backgroundColor: "rgba(0, 0, 0, 0.25)" }}>
                 <Card.Title
                     title="Outflow 💸"
                     subtitle="Essential money going out."
@@ -68,6 +75,6 @@ export default function FlowsScreen(props) {
                     <Paragraph>❌ Estimated other costs £1300 ❌</Paragraph>
                 </Card.Content>
             </Card>
-        </View>
+        </FettKontanterView>
     );
 }
