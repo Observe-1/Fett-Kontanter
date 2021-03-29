@@ -52,7 +52,10 @@ export default function OverviewScreen(props) {
                 <Card
                     style={[
                         styles.modalCard,
-                        { backgroundColor: modalItem.code },
+                        {
+                            backgroundColor: modalItem.code,
+                            elevation: 0,
+                        },
                     ]}
                 >
                     <Text>
