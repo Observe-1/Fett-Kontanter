@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as SplashScreen from "expo-splash-screen";
 import * as SQLite from "expo-sqlite";
-import { Platform } from "react-native";
+import { StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -65,7 +65,9 @@ function AppTabs(props) {
         <Tab.Navigator initialRouteName="Overview">
             <Tab.Screen
                 name="Accounts"
-                children={() => <AccountsScreen db={props.db} />}
+                children={() => (
+                    <AccountsScreen db={props.db} styles={styles} />
+                )}
                 options={{
                     tabBarLabel: "Accounts",
                     tabBarColor: "#009387",
@@ -77,7 +79,7 @@ function AppTabs(props) {
 
             <Tab.Screen
                 name="Flows"
-                children={() => <FlowsScreen db={props.db} />}
+                children={() => <FlowsScreen db={props.db} styles={styles} />}
                 options={{
                     tabBarLabel: "Flows",
                     tabBarColor: "#1f65ff",
@@ -89,7 +91,9 @@ function AppTabs(props) {
 
             <Tab.Screen
                 name="Overview"
-                children={() => <OverviewScreen db={props.db} />}
+                children={() => (
+                    <OverviewScreen db={props.db} styles={styles} />
+                )}
                 options={{
                     tabBarLabel: "Overview",
                     tabBarColor: "#694fad",
@@ -101,7 +105,9 @@ function AppTabs(props) {
 
             <Tab.Screen
                 name="Portfolio"
-                children={() => <PortfolioScreen db={props.db} />}
+                children={() => (
+                    <PortfolioScreen db={props.db} styles={styles} />
+                )}
                 options={{
                     tabBarLabel: "Portfolio",
                     tabBarColor: "#d02860",
@@ -113,7 +119,9 @@ function AppTabs(props) {
 
             <Tab.Screen
                 name="Settings"
-                children={() => <SettingsScreen db={props.db} />}
+                children={() => (
+                    <SettingsScreen db={props.db} styles={styles} />
+                )}
                 options={{
                     tabBarLabel: "Settings",
                     tabBarColor: "#ff0002",
@@ -125,3 +133,41 @@ function AppTabs(props) {
         </Tab.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+    centerView: {
+        flex: 1,
+        justifyContent: "center",
+    },
+    gridView: {
+        marginTop: 20,
+        flex: 1,
+        flexGrow: 1,
+    },
+    itemContainer: {
+        flex: 1,
+        justifyContent: "flex-end",
+        borderRadius: 10,
+        padding: 10,
+        height: 150,
+    },
+    modalCard: {
+        flex: 1,
+        justifyContent: "flex-end",
+        borderRadius: 10,
+        padding: 10,
+        minHeight: "80%",
+        marginLeft: 20,
+        marginRight: 20,
+    },
+    itemName: {
+        fontSize: 16,
+        color: "#fff",
+        fontWeight: "600",
+    },
+    itemCode: {
+        fontWeight: "600",
+        fontSize: 12,
+        color: "#fff",
+    },
+});
