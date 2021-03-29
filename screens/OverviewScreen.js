@@ -1,14 +1,12 @@
-import React, { useEffect } from "react";
+import * as React from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { Button } from "react-native-material-ui";
 import { Modal, Card } from "react-native-paper";
-import { FlatGrid } from "react-native-super-grid";
 
-import getPrimaryUser from "../functions/dba/getPrimaryUser";
+import GridCards from "../components/GridCards";
+import BigCard from "../components/BigCard";
+import WelcomeName from "../components/WelcomeName";
 
 export default function OverviewScreen(props) {
-    const [user, onChangeUser] = React.useState("");
-
     const [items, setItems] = React.useState([
         { name: "TURQUOISE", code: "#1abc9c", category: "pieChart" },
         { name: "EMERALD", code: "#2ecc71", category: "lineChart" },
@@ -31,11 +29,6 @@ export default function OverviewScreen(props) {
         { name: "ASBESTOS", code: "#7f8c8d", category: "text" },
     ]);
 
-    if (user == "") {
-        getPrimaryUser(props.db).then((user) => onChangeUser(user));
-    }
-
-    //TODO improve
     const [visible, setVisible] = React.useState(false);
     const [modalContent, setmodalContent] = React.useState("");
 
@@ -48,67 +41,13 @@ export default function OverviewScreen(props) {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
-                <Text style={{ fontSize: 25 }}>Hello {user.name}!</Text>
+                <WelcomeName db={props.db} fontSize={25} />
                 <Text style={{ fontSize: 20 }}>
                     Let's look at your portfolio.
                 </Text>
             </View>
-            <View
-                style={[
-                    styles.itemContainer,
-                    {
-                        backgroundColor: "#7f8c8d",
-                        marginTop: 20,
-                        marginLeft: 20,
-                        marginRight: 20,
-                        maxHeight: 250,
-                    },
-                ]}
-            >
-                <Text style={styles.itemName}>A BIG line chart goes here</Text>
-            </View>
-            <FlatGrid
-                itemDimension={140}
-                data={items}
-                style={styles.gridView}
-                // staticDimension={300}
-                // fixed
-                spacing={20}
-                renderItem={({ item }) => (
-                    <Card
-                        // elevation={5}
-                        style={[
-                            styles.itemContainer,
-                            { backgroundColor: item.code },
-                        ]}
-                        onPress={() => {
-                            showModal(item.category);
-                        }}
-                    >
-                        {item.category == "text" && (
-                            <View>
-                                <Text style={styles.itemName}>{item.name}</Text>
-                                <Text style={styles.itemCode}>{item.code}</Text>
-                            </View>
-                        )}
-                        {item.category == "pieChart" && (
-                            <Text style={styles.itemName}>
-                                A pie chart goes here
-                            </Text>
-                        )}
-                        {item.category == "lineChart" && (
-                            <Text style={styles.itemName}>
-                                A line chart goes here
-                            </Text>
-                        )}
-                        {item.category == "table" && (
-                            <Text style={styles.itemName}>
-                                A table goes here
-                            </Text>
-                        )}
-                    </Card>
-                )}
-            />
+            <BigCard styles={styles} />
+            <GridCards data={items} showModal={showModal} styles={styles} />
             <Modal visible={visible} onDismiss={hideModal}>
                 <Card style={styles.modalCard}>
                     <Text>{modalContent}</Text>
