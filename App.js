@@ -96,7 +96,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Overview",
-                    tabBarColor: "#694fad",
+                    tabBarColor: "#2F3A4A",
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-home" color={color} size={24} />
                     ),
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         padding: 10,
-        backgroundColor: "#7f8c8d",
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
