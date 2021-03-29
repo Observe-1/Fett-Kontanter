@@ -1,6 +1,7 @@
 # Fett Kontanter: Net Worth Tracker
 
 (Fat Cash in Swedish)
+<img src="./assets/Logos/1.png"/>
 
 An android app designed to provide a financial platform for tracking portfolio growth and net worth over time.
 
@@ -11,4 +12,5 @@ With an easy to use interface and a planned 10+ trackable elements, all you have
 
 Currently only supporting 💷 £ - GDP 💷 with plans for external currencies 💴💵.
 
-<img src="./assets/Logos/1.png"/>
+Current progress:
+<img src="./assets/progress/30-03-2020.jpg"/>
