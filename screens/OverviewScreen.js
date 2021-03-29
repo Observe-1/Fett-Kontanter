@@ -40,7 +40,7 @@ export default function OverviewScreen(props) {
 
     return (
         <View style={{ flex: 1 }}>
-            <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
+            <View style={props.styles.topTextSection}>
                 <WelcomeName db={props.db} fontSize={25} />
                 <Text style={{ fontSize: 20 }}>
                     Let's look at your portfolio.

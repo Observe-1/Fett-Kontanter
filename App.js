@@ -135,6 +135,11 @@ function AppTabs(props) {
 }
 
 const styles = StyleSheet.create({
+    topTextSection: {
+        marginTop: 50,
+        marginLeft: 10,
+        marginRight: 10,
+    },
     centerView: {
         flex: 1,
         justifyContent: "center",
@@ -150,6 +155,16 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         padding: 10,
         height: 150,
+    },
+    bigCard: {
+        flex: 1,
+        justifyContent: "flex-end",
+        padding: 10,
+        backgroundColor: "#7f8c8d",
+        marginTop: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        maxHeight: 250,
     },
     modalCard: {
         flex: 1,
