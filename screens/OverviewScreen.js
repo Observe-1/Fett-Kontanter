@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flex: 0,
         //TODO improve max height
-        height: "84%",
+        height: "55%",
     },
     itemContainer: {
         justifyContent: "flex-end",
