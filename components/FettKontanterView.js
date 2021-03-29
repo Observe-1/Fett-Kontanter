@@ -1,5 +1,6 @@
 import * as React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
 
 export default function FettKontanterView(props) {
     return (
@@ -10,6 +11,7 @@ export default function FettKontanterView(props) {
             start={{ x: 0, y: 0 }}
             style={[props.styles.centerView, { flex: 1 }]}
         >
+            <StatusBar />
             {props.children}
         </LinearGradient>
     );
