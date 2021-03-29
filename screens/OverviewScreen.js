@@ -5,6 +5,7 @@ import { Modal, Card } from "react-native-paper";
 import GridCards from "../components/GridCards";
 import BigCard from "../components/BigCard";
 import WelcomeName from "../components/WelcomeName";
+import FettKontanterView from "../components/FettKontanterView";
 
 export default function OverviewScreen(props) {
     const [items, setItems] = React.useState([
@@ -15,7 +16,7 @@ export default function OverviewScreen(props) {
         { name: "WET ASPHALT", code: "#34495e", category: "table" },
         { name: "GREEN SEA", code: "#16a085", category: "lineChart" },
         { name: "NEPHRITIS", code: "#27ae60", category: "table" },
-        { name: "BELIZE HOLE", code: "#2980b9", category: "text" },
+        { name: "BUTT HOLE", code: "#2980b9", category: "text" },
         { name: "WISTERIA", code: "#8e44ad", category: "text" },
         { name: "MIDNIGHT BLUE", code: "#2c3e50", category: "text" },
         { name: "SUN FLOWER", code: "#f1c40f", category: "text" },
@@ -39,7 +40,7 @@ export default function OverviewScreen(props) {
     const hideModal = () => setVisible(false);
 
     return (
-        <View style={{ flex: 1 }}>
+        <FettKontanterView styles={props.styles}>
             <View style={props.styles.topTextSection}>
                 <WelcomeName db={props.db} fontSize={25} />
                 <Text style={{ fontSize: 20 }}>
@@ -71,6 +72,6 @@ export default function OverviewScreen(props) {
                     </Text>
                 </Card>
             </Modal>
-        </View>
+        </FettKontanterView>
     );
 }

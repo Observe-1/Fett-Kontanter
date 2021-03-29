@@ -16,7 +16,10 @@ export default function GridCards(props) {
                 <Card
                     style={[
                         props.styles.itemContainer,
-                        { backgroundColor: item.code },
+                        {
+                            backgroundColor: "rgba(0, 0, 0, 0.25)",
+                            elevation: 0,
+                        },
                     ]}
                     onPress={() => {
                         props.showModal(item);

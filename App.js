@@ -70,7 +70,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Accounts",
-                    tabBarColor: "#009387",
+                    tabBarColor: "#3e4a95",
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-card" color={color} size={24} />
                     ),
@@ -82,7 +82,7 @@ function AppTabs(props) {
                 children={() => <FlowsScreen db={props.db} styles={styles} />}
                 options={{
                     tabBarLabel: "Flows",
-                    tabBarColor: "#1f65ff",
+                    tabBarColor: "#323d75",
                     tabBarIcon: ({ color }) => (
                         <Icon name="swap-horizontal" color={color} size={24} />
                     ),
@@ -96,7 +96,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Overview",
-                    tabBarColor: "#694fad",
+                    tabBarColor: "#344052",
                     tabBarIcon: ({ color }) => (
                         <Icon name="ios-home" color={color} size={24} />
                     ),
@@ -110,7 +110,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Portfolio",
-                    tabBarColor: "#d02860",
+                    tabBarColor: "#323d75",
                     tabBarIcon: ({ color }) => (
                         <Icon name="pie-chart" color={color} size={24} />
                     ),
@@ -124,7 +124,7 @@ function AppTabs(props) {
                 )}
                 options={{
                     tabBarLabel: "Settings",
-                    tabBarColor: "#ff0002",
+                    tabBarColor: "#3e4a95",
                     tabBarIcon: ({ color }) => (
                         <Icon name="settings-sharp" color={color} size={24} />
                     ),
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "flex-end",
         padding: 10,
-        backgroundColor: "#7f8c8d",
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
         marginTop: 20,
         marginLeft: 20,
         marginRight: 20,
