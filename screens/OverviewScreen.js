@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Button } from "react-native-material-ui";
-import { Card } from "react-native-paper";
+import { Modal, Card } from "react-native-paper";
 import { FlatGrid } from "react-native-super-grid";
 
 import getPrimaryUser from "../functions/dba/getPrimaryUser";
@@ -35,6 +35,16 @@ export default function OverviewScreen(props) {
         getPrimaryUser(props.db).then((user) => onChangeUser(user));
     }
 
+    //TODO improve
+    const [visible, setVisible] = React.useState(false);
+    const [modalContent, setmodalContent] = React.useState("");
+
+    function showModal(category) {
+        setmodalContent(category);
+        setVisible(true);
+    }
+    const hideModal = () => setVisible(false);
+
     return (
         <View style={{ flex: 1 }}>
             <View style={{ marginTop: 50, marginLeft: 10, marginRight: 10 }}>
@@ -42,12 +52,6 @@ export default function OverviewScreen(props) {
                 <Text style={{ fontSize: 20 }}>
                     Let's look at your portfolio.
                 </Text>
-                <Button
-                    style={{ marginLeft: 50, marginRight: 10 }}
-                    raised
-                    accent
-                    text="Add fat cash button"
-                />
             </View>
             <View
                 style={[
@@ -55,9 +59,9 @@ export default function OverviewScreen(props) {
                     {
                         backgroundColor: "#7f8c8d",
                         marginTop: 20,
-                        marginLeft: 10,
-                        marginRight: 10,
-                        height: 250,
+                        marginLeft: 20,
+                        marginRight: 20,
+                        maxHeight: 250,
                     },
                 ]}
             >
@@ -77,6 +81,9 @@ export default function OverviewScreen(props) {
                             styles.itemContainer,
                             { backgroundColor: item.code },
                         ]}
+                        onPress={() => {
+                            showModal(item.category);
+                        }}
                     >
                         {item.category == "text" && (
                             <View>
@@ -102,6 +109,25 @@ export default function OverviewScreen(props) {
                     </Card>
                 )}
             />
+            <Modal
+                style={{ absolute: 1 }}
+                visible={visible}
+                onDismiss={hideModal}
+            >
+                <Card
+                    // elevation={5}
+                    style={[
+                        styles.itemContainer,
+                        {
+                            minHeight: "80%",
+                            marginLeft: 20,
+                            marginRight: 20,
+                        },
+                    ]}
+                >
+                    <Text>{modalContent}</Text>
+                </Card>
+            </Modal>
         </View>
     );
 }
@@ -113,6 +139,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
     },
     itemContainer: {
+        flex: 1,
         justifyContent: "flex-end",
         borderRadius: 10,
         padding: 10,
