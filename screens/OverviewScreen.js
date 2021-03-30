@@ -11,7 +11,12 @@ export default function OverviewScreen(props) {
     const [items, setItems] = React.useState([
         { name: "TURQUOISE", code: "#1abc9c", category: "pieChart" },
         { name: "EMERALD", code: "#2ecc71", category: "lineChart" },
-        { name: "PETER RIVER", code: "#3498db", category: "pieChart" },
+        {
+            name: "All assets",
+            code: "#3498db",
+            category: "pieChartNew",
+            value: "£125k",
+        },
         { name: "AMETHYST", code: "#9b59b6", category: "lineChart" },
         { name: "WET ASPHALT", code: "#34495e", category: "table" },
         { name: "GREEN SEA", code: "#16a085", category: "lineChart" },

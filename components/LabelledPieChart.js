@@ -6,29 +6,9 @@ import * as shape from "d3-shape";
 import { Grid, AreaChart, PieChart, LineChart } from "react-native-svg-charts";
 
 export default function LabelledPieChart(props) {
-    const Labels = ({ slices, height, width }) => {
-        return slices.map((slice, index) => {
-            const { labelCentroid, pieCentroid, data } = slice;
-            return (
-                <Text
-                    key={index}
-                    x={pieCentroid[0]}
-                    y={pieCentroid[1]}
-                    fill={"black"}
-                    textAnchor={"middle"}
-                    alignmentBaseline={"middle"}
-                    stroke={"black"}
-                    strokeWidth={0.2}
-                >
-                    {data.pounds}
-                </Text>
-            );
-        });
-    };
-
     return (
         <PieChart
-            style={{ width: 150, height: 150 }}
+            style={{ alignSelf: "center", width: 125, height: 125 }}
             valueAccessor={({ item }) => item.value}
             outerRadius={"70%"}
             innerRadius={10}
@@ -36,10 +16,35 @@ export default function LabelledPieChart(props) {
             spacing={0}
             animate={true}
         >
-            <Labels />
+            {/* <Labels /> */}
         </PieChart>
     );
 }
+
+// export default function LabelledPieChart(props) {
+//     return <Text style={props.styles.itemName}>A table goes here</Text>;
+// }
+
+// const Labels = ({ slices, height, width }) => {
+//     return slices.map((slice, index) => {
+//         const { labelCentroid, pieCentroid, data } = slice;
+//         return (
+//             <Text
+//                 key={index}
+//                 x={pieCentroid[0]}
+//                 y={pieCentroid[1]}
+//                 fill={"black"}
+//                 textAnchor={"middle"}
+//                 alignmentBaseline={"middle"}
+//                 stroke={"black"}
+//                 strokeWidth={0.2}
+//             >
+//                 {data.pounds}
+//             </Text>
+//         );
+//     });
+// };
+// }
 
 // Example
 // const pieData = [
