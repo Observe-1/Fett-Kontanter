@@ -5,6 +5,7 @@ import { Modal, Card } from "react-native-paper";
 import GridCards from "../components/GridCards";
 import BigCard from "../components/BigCard";
 import WelcomeName from "../components/WelcomeName";
+import LabelledPieChart from "../components/LabelledPieChart";
 import FettKontanterView from "../components/FettKontanterView";
 
 export default function OverviewScreen(props) {
@@ -96,18 +97,40 @@ export default function OverviewScreen(props) {
                     style={[
                         props.styles.modalCard,
                         {
-                            backgroundColor: modalItem.code,
+                            backgroundColor: "rgba(0,0,0,0.7)",
                             elevation: 0,
                         },
                     ]}
                 >
-                    <Text>
-                        {modalItem.name +
-                            " - " +
-                            modalItem.category +
-                            " - " +
-                            modalItem.code}
-                    </Text>
+                    {/* TODO Extract code (repeated from GridCards) */}
+                    {modalItem.category == "pieChart" && (
+                        <Text style={props.styles.itemName}>
+                            A pie chart goes here
+                        </Text>
+                    )}
+                    {modalItem.category == "lineChart" && (
+                        <Text style={props.styles.itemName}>
+                            A line chart goes here
+                        </Text>
+                    )}
+                    {modalItem.category == "table" && (
+                        <Text style={props.styles.itemName}>
+                            A table goes here
+                        </Text>
+                    )}
+                    {modalItem.category == "pieChartNew" && (
+                        <View>
+                            <Text style={props.styles.itemName}>
+                                {modalItem.name}:{modalItem.value}
+                            </Text>
+
+                            <LabelledPieChart
+                                styles={props.styles.itemName}
+                                pieData={modalItem.pieData}
+                                labels={false}
+                            />
+                        </View>
+                    )}
                 </Card>
             </Modal>
         </FettKontanterView>
