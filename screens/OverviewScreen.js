@@ -10,11 +10,10 @@ import FettKontanterView from "../components/FettKontanterView";
 
 export default function OverviewScreen(props) {
     const [items, setItems] = React.useState([
-        { name: "TURQUOISE", code: "#1abc9c", category: "pieChart" },
-        { name: "EMERALD", code: "#2ecc71", category: "lineChart" },
+        { name: "TURQUOISE", category: "pieChart" },
+        { name: "EMERALD", category: "lineChart" },
         {
             name: "All assets",
-            code: "#3498db",
             category: "pieChartNew",
             //TODO Calculate this value
             value: "£125k",
@@ -51,22 +50,22 @@ export default function OverviewScreen(props) {
                 },
             ],
         },
-        { name: "AMETHYST", code: "#9b59b6", category: "lineChart" },
-        { name: "WET ASPHALT", code: "#34495e", category: "table" },
-        { name: "GREEN SEA", code: "#16a085", category: "lineChart" },
-        { name: "NEPHRITIS", code: "#27ae60", category: "table" },
-        { name: "BUTT HOLE", code: "#2980b9", category: "lineChart" },
-        { name: "WISTERIA", code: "#8e44ad", category: "table" },
-        { name: "MIDNIGHT BLUE", code: "#2c3e50", category: "lineChart" },
-        { name: "SUN FLOWER", code: "#f1c40f", category: "lineChart" },
-        { name: "CARROT", code: "#e67e22", category: "table" },
-        { name: "ALIZARIN", code: "#e74c3c", category: "lineChart" },
-        { name: "CONCRETE", code: "#95a5a6", category: "pieChart" },
-        { name: "ORANGE", code: "#f39c12", category: "pieChart" },
-        { name: "PUMPKIN", code: "#d35400", category: "lineChart" },
-        { name: "POMEGRANATE", code: "#c0392b", category: "lineChart" },
-        { name: "SILVER", code: "#bdc3c7", category: "pieChart" },
-        { name: "ASBESTOS", code: "#7f8c8d", category: "pieChart" },
+        { name: "AMETHYST", category: "lineChart" },
+        { name: "WET ASPHALT", category: "table" },
+        { name: "GREEN SEA", category: "lineChart" },
+        { name: "NEPHRITIS", category: "table" },
+        { name: "BUTT HOLE", category: "lineChart" },
+        { name: "WISTERIA", category: "table" },
+        { name: "MIDNIGHT BLUE", category: "lineChart" },
+        { name: "SUN FLOWER", category: "lineChart" },
+        { name: "CARROT", category: "table" },
+        { name: "ALIZARIN", category: "lineChart" },
+        { name: "CONCRETE", category: "pieChart" },
+        { name: "ORANGE", category: "pieChart" },
+        { name: "PUMPKIN", category: "lineChart" },
+        { name: "POMEGRANATE", category: "lineChart" },
+        { name: "SILVER", category: "pieChart" },
+        { name: "ASBESTOS", category: "pieChart" },
     ]);
 
     const [visible, setVisible] = React.useState(false);
@@ -103,6 +102,13 @@ export default function OverviewScreen(props) {
                     ]}
                 >
                     {/* TODO Extract code (repeated from GridCards) */}
+                    {modalItem.category == "text" && (
+                        <View>
+                            <Text style={props.styles.itemName}>
+                                {item.name}
+                            </Text>
+                        </View>
+                    )}
                     {modalItem.category == "pieChart" && (
                         <Text style={props.styles.itemName}>
                             A pie chart goes here

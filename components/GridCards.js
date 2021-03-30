@@ -32,9 +32,6 @@ export default function GridCards(props) {
                             <Text style={props.styles.itemName}>
                                 {item.name}
                             </Text>
-                            <Text style={props.styles.itemCode}>
-                                {item.code}
-                            </Text>
                         </View>
                     )}
                     {item.category == "pieChart" && (
