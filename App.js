@@ -151,7 +151,6 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         flex: 1,
-        justifyContent: "flex-end",
         borderRadius: 10,
         padding: 10,
         height: 150,

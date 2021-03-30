@@ -3,6 +3,8 @@ import { Text, View } from "react-native";
 import { Card } from "react-native-paper";
 import { FlatGrid } from "react-native-super-grid";
 
+import LabelledPieChart from "./LabelledPieChart";
+
 export default function GridCards(props) {
     return (
         <FlatGrid
@@ -30,15 +32,7 @@ export default function GridCards(props) {
                             <Text style={props.styles.itemName}>
                                 {item.name}
                             </Text>
-                            <Text style={props.styles.itemCode}>
-                                {item.code}
-                            </Text>
                         </View>
-                    )}
-                    {item.category == "pieChart" && (
-                        <Text style={props.styles.itemName}>
-                            A pie chart goes here
-                        </Text>
                     )}
                     {item.category == "lineChart" && (
                         <Text style={props.styles.itemName}>
@@ -49,6 +43,19 @@ export default function GridCards(props) {
                         <Text style={props.styles.itemName}>
                             A table goes here
                         </Text>
+                    )}
+                    {item.category == "pieChart" && (
+                        <View>
+                            <Text style={props.styles.itemName}>
+                                {item.name}:{item.value}
+                            </Text>
+
+                            <LabelledPieChart
+                                styles={props.styles.itemName}
+                                pieData={item.pieData}
+                                labels={false}
+                            />
+                        </View>
                     )}
                 </Card>
             )}
