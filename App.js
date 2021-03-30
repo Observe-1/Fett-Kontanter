@@ -179,9 +179,19 @@ const styles = StyleSheet.create({
         color: "#fff",
         fontWeight: "600",
     },
+    itemTitle: {
+        fontSize: 30,
+        color: "#fff",
+        fontWeight: "800",
+    },
     itemCode: {
         fontWeight: "600",
         fontSize: 12,
+        color: "#fff",
+    },
+    pieChartLabels: {
+        fontWeight: "900",
+        fontSize: 20,
         color: "#fff",
     },
 });

@@ -51,6 +51,7 @@ export default function GridCards(props) {
                             </Text>
 
                             <LabelledPieChart
+                                style={{ alignSelf: "center" }}
                                 styles={props.styles.itemName}
                                 pieData={item.pieData}
                                 labels={false}

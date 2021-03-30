@@ -206,15 +206,18 @@ export default function OverviewScreen(props) {
                         </Text>
                     )}
                     {modalItem.category == "pieChart" && (
-                        <View>
-                            <Text style={props.styles.itemName}>
+                        <View style={{ flex: 0 }}>
+                            <Text style={props.styles.itemTitle}>
                                 {modalItem.name}:{modalItem.value}
                             </Text>
 
                             <LabelledPieChart
+                                style={{
+                                    alignSelf: "center",
+                                }}
                                 styles={props.styles.itemName}
                                 pieData={modalItem.pieData}
-                                labels={false}
+                                labels={true}
                             />
                         </View>
                     )}
