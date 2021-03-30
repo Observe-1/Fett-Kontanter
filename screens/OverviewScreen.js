@@ -15,6 +15,7 @@ export default function OverviewScreen(props) {
             name: "All assets",
             code: "#3498db",
             category: "pieChartNew",
+            //TODO Calculate this value
             value: "£125k",
             pieData: [
                 {
@@ -22,7 +23,6 @@ export default function OverviewScreen(props) {
                     value: 50,
                     pounds: "£50k",
                     svg: { fill: "#FF6500" },
-                    // arc: { outerRadius: "130%", cornerRadius: 10 },
                 },
                 {
                     key: 2,
