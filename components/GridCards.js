@@ -60,7 +60,7 @@ export default function GridCards(props) {
 
                             <LabelledPieChart
                                 styles={props.styles.itemName}
-                                pieData={pieChartTestData}
+                                pieData={item.pieData}
                             />
                         </View>
                     )}
@@ -69,37 +69,3 @@ export default function GridCards(props) {
         />
     );
 }
-
-const pieChartTestData = [
-    {
-        key: 1,
-        value: 50,
-        pounds: "£50k",
-        svg: { fill: "#FF6500" },
-        // arc: { outerRadius: "130%", cornerRadius: 10 },
-    },
-    {
-        key: 2,
-        value: 50,
-        pounds: "£50k",
-        svg: { fill: "#d02860" },
-    },
-    {
-        key: 3,
-        value: 40,
-        pounds: "£40k",
-        svg: { fill: "#d02800" },
-    },
-    {
-        key: 4,
-        value: 95,
-        pounds: "£95k",
-        svg: { fill: "#d00060" },
-    },
-    {
-        key: 5,
-        value: 35,
-        pounds: "£35k",
-        svg: { fill: "#FF0000" },
-    },
-];
