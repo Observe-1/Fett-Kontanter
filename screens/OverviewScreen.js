@@ -13,7 +13,7 @@ export default function OverviewScreen(props) {
         { name: "EMERALD", category: "lineChart" },
         {
             name: "All liabilities",
-            category: "pieChartNew",
+            category: "pieChart",
             //TODO Calculate this value
             value: "£75k",
             pieData: [
@@ -39,14 +39,14 @@ export default function OverviewScreen(props) {
         },
         {
             name: "All assets",
-            category: "pieChartNew",
+            category: "pieChart",
             value: "£125k",
             pieData: [
                 {
                     key: 1,
                     value: 50,
                     pounds: "£50k",
-                    svg: { fill: "#00554A" },
+                    svg: { fill: "#00554B" },
                 },
                 {
                     key: 2,
@@ -86,7 +86,7 @@ export default function OverviewScreen(props) {
         { name: "ALIZARIN", category: "lineChart" },
         {
             name: "All loans",
-            category: "pieChartNew",
+            category: "pieChart",
             value: "£55k",
             pieData: [
                 {
@@ -106,7 +106,7 @@ export default function OverviewScreen(props) {
         { name: "PUMPKIN", category: "lineChart" },
         {
             name: "Passive Investments",
-            category: "pieChartNew",
+            category: "pieChart",
             pieData: [
                 {
                     key: 1,
@@ -136,7 +136,7 @@ export default function OverviewScreen(props) {
         },
         {
             name: "Active Investments",
-            category: "pieChartNew",
+            category: "pieChart",
             pieData: [
                 {
                     key: 1,
@@ -195,11 +195,6 @@ export default function OverviewScreen(props) {
                             </Text>
                         </View>
                     )}
-                    {modalItem.category == "pieChart" && (
-                        <Text style={props.styles.itemName}>
-                            A pie chart goes here
-                        </Text>
-                    )}
                     {modalItem.category == "lineChart" && (
                         <Text style={props.styles.itemName}>
                             A line chart goes here
@@ -210,7 +205,7 @@ export default function OverviewScreen(props) {
                             A table goes here
                         </Text>
                     )}
-                    {modalItem.category == "pieChartNew" && (
+                    {modalItem.category == "pieChart" && (
                         <View>
                             <Text style={props.styles.itemName}>
                                 {modalItem.name}:{modalItem.value}

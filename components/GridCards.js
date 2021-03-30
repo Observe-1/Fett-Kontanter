@@ -34,11 +34,6 @@ export default function GridCards(props) {
                             </Text>
                         </View>
                     )}
-                    {item.category == "pieChart" && (
-                        <Text style={props.styles.itemName}>
-                            A pie chart goes here
-                        </Text>
-                    )}
                     {item.category == "lineChart" && (
                         <Text style={props.styles.itemName}>
                             A line chart goes here
@@ -49,7 +44,7 @@ export default function GridCards(props) {
                             A table goes here
                         </Text>
                     )}
-                    {item.category == "pieChartNew" && (
+                    {item.category == "pieChart" && (
                         <View>
                             <Text style={props.styles.itemName}>
                                 {item.name}:{item.value}
