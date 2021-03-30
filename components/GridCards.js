@@ -61,6 +61,7 @@ export default function GridCards(props) {
                             <LabelledPieChart
                                 styles={props.styles.itemName}
                                 pieData={item.pieData}
+                                labels={false}
                             />
                         </View>
                     )}

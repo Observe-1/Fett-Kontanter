@@ -16,35 +16,30 @@ export default function LabelledPieChart(props) {
             spacing={0}
             animate={true}
         >
-            {/* <Labels /> */}
+            {props.labels == true && <Labels />}
         </PieChart>
     );
 }
 
-// export default function LabelledPieChart(props) {
-//     return <Text style={props.styles.itemName}>A table goes here</Text>;
-// }
-
-// const Labels = ({ slices, height, width }) => {
-//     return slices.map((slice, index) => {
-//         const { labelCentroid, pieCentroid, data } = slice;
-//         return (
-//             <Text
-//                 key={index}
-//                 x={pieCentroid[0]}
-//                 y={pieCentroid[1]}
-//                 fill={"black"}
-//                 textAnchor={"middle"}
-//                 alignmentBaseline={"middle"}
-//                 stroke={"black"}
-//                 strokeWidth={0.2}
-//             >
-//                 {data.pounds}
-//             </Text>
-//         );
-//     });
-// };
-// }
+const Labels = ({ slices, height, width }) => {
+    return slices.map((slice, index) => {
+        const { labelCentroid, pieCentroid, data } = slice;
+        return (
+            <Text
+                key={index}
+                x={pieCentroid[0]}
+                y={pieCentroid[1]}
+                fill={"black"}
+                textAnchor={"middle"}
+                alignmentBaseline={"middle"}
+                stroke={"black"}
+                strokeWidth={0.2}
+            >
+                {data.pounds}
+            </Text>
+        );
+    });
+};
 
 // Example
 // const pieData = [
