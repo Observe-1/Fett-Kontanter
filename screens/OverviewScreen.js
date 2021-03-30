@@ -10,25 +10,24 @@ import FettKontanterView from "../components/FettKontanterView";
 
 export default function OverviewScreen(props) {
     const [items, setItems] = React.useState([
-        { name: "TURQUOISE", category: "pieChart" },
         { name: "EMERALD", category: "lineChart" },
         {
-            name: "All assets",
+            name: "All liabilities",
             category: "pieChartNew",
             //TODO Calculate this value
-            value: "£125k",
+            value: "£75k",
             pieData: [
                 {
                     key: 1,
                     value: 50,
                     pounds: "£50k",
-                    svg: { fill: "#FF6500" },
+                    svg: { fill: "#66c2a5" },
                 },
                 {
                     key: 2,
                     value: 50,
                     pounds: "£50k",
-                    svg: { fill: "#d02860" },
+                    svg: { fill: "#8da0cb" },
                 },
                 {
                     key: 3,
@@ -36,11 +35,36 @@ export default function OverviewScreen(props) {
                     pounds: "£40k",
                     svg: { fill: "#d02800" },
                 },
+            ],
+        },
+        {
+            name: "All assets",
+            category: "pieChartNew",
+            value: "£125k",
+            pieData: [
+                {
+                    key: 1,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#00554A" },
+                },
+                {
+                    key: 2,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#F67280" },
+                },
+                {
+                    key: 3,
+                    value: 40,
+                    pounds: "£40k",
+                    svg: { fill: "#66c2a5" },
+                },
                 {
                     key: 4,
                     value: 95,
                     pounds: "£95k",
-                    svg: { fill: "#d00060" },
+                    svg: { fill: "#6CFB7B" },
                 },
                 {
                     key: 5,
@@ -60,12 +84,74 @@ export default function OverviewScreen(props) {
         { name: "SUN FLOWER", category: "lineChart" },
         { name: "CARROT", category: "table" },
         { name: "ALIZARIN", category: "lineChart" },
-        { name: "CONCRETE", category: "pieChart" },
-        { name: "ORANGE", category: "pieChart" },
+        {
+            name: "All loans",
+            category: "pieChartNew",
+            value: "£55k",
+            pieData: [
+                {
+                    key: 1,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#00554A" },
+                },
+                {
+                    key: 2,
+                    value: 50,
+                    pounds: "£50",
+                    svg: { fill: "#F67280" },
+                },
+            ],
+        },
         { name: "PUMPKIN", category: "lineChart" },
-        { name: "POMEGRANATE", category: "lineChart" },
-        { name: "SILVER", category: "pieChart" },
-        { name: "ASBESTOS", category: "pieChart" },
+        {
+            name: "Passive Investments",
+            category: "pieChartNew",
+            pieData: [
+                {
+                    key: 1,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#00554A" },
+                },
+                {
+                    key: 2,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#F67280" },
+                },
+                {
+                    key: 3,
+                    value: 40,
+                    pounds: "£40k",
+                    svg: { fill: "#977FD7" },
+                },
+                {
+                    key: 4,
+                    value: 95,
+                    pounds: "£95k",
+                    svg: { fill: "#F5A9CB" },
+                },
+            ],
+        },
+        {
+            name: "Active Investments",
+            category: "pieChartNew",
+            pieData: [
+                {
+                    key: 1,
+                    value: 50,
+                    pounds: "£50k",
+                    svg: { fill: "#99B898" },
+                },
+                {
+                    key: 2,
+                    value: 50,
+                    pounds: "£100k",
+                    svg: { fill: "#2A363B" },
+                },
+            ],
+        },
     ]);
 
     const [visible, setVisible] = React.useState(false);
