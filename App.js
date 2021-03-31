@@ -194,4 +194,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "#fff",
     },
+    modalBackGround: {
+        flex: 1,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    modalContainer: {
+        width: "80%",
+        backgroundColor: "rgba(0,0,0,0.6)",
+        paddingHorizontal: 20,
+        paddingVertical: 30,
+        borderRadius: 20,
+        elevation: 20,
+    },
 });

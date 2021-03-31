@@ -1,6 +1,14 @@
 import * as React from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { Modal, Card } from "react-native-paper";
+import {
+    Modal,
+    Text,
+    View,
+    StyleSheet,
+    Animated,
+    TouchableOpacity,
+    Image,
+} from "react-native";
+import { Card } from "react-native-paper";
 
 import GridCards from "../components/GridCards";
 import BigCard from "../components/BigCard";
@@ -177,8 +185,9 @@ export default function OverviewScreen(props) {
                 showModal={showModal}
                 styles={props.styles}
             />
-            <Modal visible={visible} onDismiss={hideModal}>
-                <Card
+            {/* <Modal visible={visible} onDismiss={hideModal}> */}
+            <ModalPoup styles={props.styles} visible={visible}>
+                {/* <Card
                     style={[
                         props.styles.modalCard,
                         {
@@ -186,43 +195,84 @@ export default function OverviewScreen(props) {
                             elevation: 0,
                         },
                     ]}
-                >
-                    {/* TODO Extract code (repeated from GridCards) */}
-                    {modalItem.category == "text" && (
-                        <View>
-                            <Text style={props.styles.itemName}>
-                                {item.name}
-                            </Text>
-                        </View>
-                    )}
-                    {modalItem.category == "lineChart" && (
-                        <Text style={props.styles.itemName}>
-                            A line chart goes here
-                        </Text>
-                    )}
-                    {modalItem.category == "table" && (
-                        <Text style={props.styles.itemName}>
-                            A table goes here
-                        </Text>
-                    )}
-                    {modalItem.category == "pieChart" && (
-                        <View style={{ flex: 0 }}>
-                            <Text style={props.styles.itemTitle}>
-                                {modalItem.name}:{modalItem.value}
-                            </Text>
-
-                            <LabelledPieChart
-                                style={{
-                                    alignSelf: "center",
-                                }}
-                                styles={props.styles.itemName}
-                                pieData={modalItem.pieData}
-                                labels={true}
+                > */}
+                {/* TODO Extract code (repeated from GridCards) */}
+                {modalItem.category == "text" && (
+                    <View>
+                        <Text style={props.styles.itemName}>{item.name}</Text>
+                    </View>
+                )}
+                {modalItem.category == "lineChart" && (
+                    <Text style={props.styles.itemName}>
+                        A line chart goes here
+                    </Text>
+                )}
+                {modalItem.category == "table" && (
+                    <Text style={props.styles.itemName}>A table goes here</Text>
+                )}
+                {modalItem.category == "pieChart" && (
+                    <View style={{ flex: 0 }}>
+                        <TouchableOpacity onPress={() => setVisible(false)}>
+                            <Image
+                                source={require("../assets/x.png")}
+                                style={{ height: 30, width: 30 }}
                             />
-                        </View>
-                    )}
-                </Card>
-            </Modal>
+                        </TouchableOpacity>
+                        <Text style={props.styles.itemTitle}>
+                            {modalItem.name}:{modalItem.value}
+                        </Text>
+
+                        <LabelledPieChart
+                            style={{
+                                alignSelf: "center",
+                            }}
+                            styles={props.styles.itemName}
+                            pieData={modalItem.pieData}
+                            labels={true}
+                        />
+                    </View>
+                )}
+                {/* </Card> */}
+            </ModalPoup>
         </FettKontanterView>
     );
 }
+
+const ModalPoup = ({ visible, children, styles }) => {
+    const [showModal, setShowModal] = React.useState(visible);
+    const scaleValue = React.useRef(new Animated.Value(0)).current;
+    React.useEffect(() => {
+        toggleModal();
+    }, [visible]);
+    const toggleModal = () => {
+        if (visible) {
+            setShowModal(true);
+            Animated.spring(scaleValue, {
+                toValue: 1,
+                duration: 300,
+                useNativeDriver: true,
+            }).start();
+        } else {
+            setTimeout(() => setShowModal(false), 200);
+            Animated.timing(scaleValue, {
+                toValue: 0,
+                duration: 300,
+                useNativeDriver: true,
+            }).start();
+        }
+    };
+    return (
+        <Modal transparent visible={showModal}>
+            <View style={styles.modalBackGround}>
+                <Animated.View
+                    style={[
+                        styles.modalContainer,
+                        { transform: [{ scale: scaleValue }] },
+                    ]}
+                >
+                    {children}
+                </Animated.View>
+            </View>
+        </Modal>
+    );
+};
